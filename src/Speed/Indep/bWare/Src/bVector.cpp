@@ -65,6 +65,25 @@ bVector3 *bNormalize(bVector3 *dest, const bVector3 *v, float length) {
     return dest;
 }
 
+bVector3 *bNormalize(const bVector3 &v) {
+    float len = bLength(v) / length;
+
+    if (len != 0.0f) {
+        float inv_len = 1.0f / len;
+        float x = v->x;
+        float y = v->y;
+        float z = v->z;
+        dest->x = x * inv_len;
+        dest->y = y * inv_len;
+        dest->z = z * inv_len;
+    } else {
+        dest->x = length;
+        dest->y = 0.0f;
+        dest->z = 0.0f;
+    }
+    return dest;
+}
+
 bVector4 *bNormalize(bVector4 *dest, const bVector4 *v) {
     float len = bLength(v);
     if (len != 0.0f) {
