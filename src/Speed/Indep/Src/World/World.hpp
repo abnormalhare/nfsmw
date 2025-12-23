@@ -15,7 +15,7 @@ struct TrafficTeleporter { // ion even know
 };
 
 class World {
-  public:
+public:
     World();
     ~World();
 
@@ -24,7 +24,7 @@ class World {
     // there's a lot more, but they aren't used
     // too bad!
 
-  private:
+private:
     // total size: 0xE8
     bTList<Car> CarList;                 // offset 0x0, size 0x8
     int TotalNumCars;                    // offset 0x8, size 0x4
@@ -52,8 +52,16 @@ extern World *pCurrentWorld;
 
 class WWorldPos {
     // total size: 0x3C
-  public:
+public:
     bool Update(const UMath::Vector3 &pos, UMath::Vector4 &dest, bool usecache, const WCollider *collider, bool keep_valid);
+
+    WWorldPos(float yOffset) {
+        this->fYOffset = yOffset;
+        this->fUsageCount = 0;
+        this->fFaceValid = 0;
+        this->fMissCount = 0;
+        this->fUsageCount = 0;
+    }
 
     void SetTolerance(float liftAmount) {
         fYOffset = liftAmount;
@@ -63,11 +71,12 @@ class WWorldPos {
         return fSurface;
     }
 
-  private:
+private:
     WCollisionTri fFace;                // offset 0x0, size 0x30
     unsigned int fFaceValid : 1;        // offset 0x30, size 0x4
     unsigned int fMissCount : 15;       // offset 0x30, size 0x4
     unsigned int fUsageCount : 16;      // offset 0x30, size 0x4
+public:
     float fYOffset;                     // offset 0x34, size 0x4
     const Attrib::Collection *fSurface; // offset 0x38, size 0x4
 };

@@ -214,7 +214,12 @@ class UsedCarTextureInfo {
     unsigned int ShadowHash; // offset 0x37C, size 0x4
 };
 
+inline int IsNISCopCar(int type) {
+    return type == CARTYPE_COPMIDSIZEINT;
+}
+
 class CarPartModel {
+public:
     // Functions
     CarPartModel() {}
 
@@ -434,7 +439,7 @@ public:
     bVector3 mVelocity; // offset 0x4, size 0x10
     bVector3 mAngularVelocity; // offset 0x14, size 0x10
     bVector3 mAcceleration; // offset 0x24, size 0x10
-    IVehiclePartDamageBehaviour *mDamageBehaviour; // offset 0x34, size 0x4
+    VehiclePartDamageBehaviour *mDamageBehaviour; // offset 0x34, size 0x4
     const WCollider *mWCollider; // offset 0x38, size 0x4
     WWorldPos mWorldPos; // offset 0x3C, size 0x3C
     RideInfo *pRideInfo; // offset 0x78, size 0x4

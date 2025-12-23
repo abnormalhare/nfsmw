@@ -330,6 +330,7 @@ template <typename T> class bPList : public bTList<bPNode> {
 };
 
 template <typename T> class bSNode {
+public:
     // Functions
     T *GetNext() {}
 
@@ -338,6 +339,7 @@ template <typename T> class bSNode {
 };
 
 template <typename T> class bSList {
+public:
     // Functions
     bSList() {}
 
