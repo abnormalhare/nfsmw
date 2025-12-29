@@ -1,4 +1,5 @@
 #include "./CarRender.hpp"
+#include "Damagezones.h"
 #include "Interfaces/IVehicleDamageBehaviour.h"
 #include "Speed/Indep/Libs/Support/Utility/UTypes.h"
 #include "Speed/Indep/Src/Ecstasy/DefragFixer.hpp"
@@ -11,6 +12,7 @@
 #include "Speed/Indep/Src/Main/AttribSupport.h"
 #include "Speed/Indep/Src/Misc/GameFlow.hpp"
 #include "Speed/Indep/Src/Misc/Profiler.hpp"
+#include "Speed/Indep/Src/Sim/Collision.h"
 #include "Speed/Indep/Src/World/CarInfo.hpp"
 #include "Speed/Indep/Src/World/World.hpp"
 #include "Speed/Indep/Tools/AttribSys/Runtime/AttribSys.h"
@@ -462,8 +464,7 @@ void CarRenderInfo::Init() {
         this->mDamageBehaviour->Reset();
     }
 
-    this->mDamageInfoCache->Clear();
-    this->mDamageInfoCache = nullptr;
+    this->mDamageInfoCache.Clear();
 }
 
 void CarRenderInfo::Refresh() {
@@ -478,4 +479,28 @@ void CarRenderInfo::Refresh() {
             }
         };
     }
+}
+
+void CarRenderInfo::SetPlayerDamage(const DamageZone::Info &damageInfo) {
+    if (this->mDamageInfoCache.Value == damageInfo.Value) return;
+
+    // const unsigned int kDamageThresh;
+    // const unsigned int kDamageWindowThresh;
+
+    this->mDamageInfoCache.Value = damageInfo.Value;
+
+    this->SetCarDamageState(damageInfo.Get(DamageZone::DZ_FRONT ) != 0, 0x2E, 0x2E);
+    this->SetCarDamageState(damageInfo.Get(DamageZone::DZ_REAR  ) != 0, 0x31, 0x31);
+    this->SetCarDamageState(damageInfo.Get(DamageZone::DZ_LFRONT) != 0, 0x2F, 0x2F);
+    this->SetCarDamageState(damageInfo.Get(DamageZone::DZ_RFRONT) != 0, 0x30, 0x30);
+    this->SetCarDamageState(damageInfo.Get(DamageZone::DZ_LREAR ) != 0, 0x32, 0x32);
+    this->SetCarDamageState(damageInfo.Get(DamageZone::DZ_RREAR ) != 0, 0x33, 0x33);
+
+    this->SetCarGlassDamageState(damageInfo.Get(DamageZone::DZ_FRONT ) != 0, REPLACETEX_WINDOW_FRONT, bStringHash("WINDOW_FRONT"), 0xa155545);
+    this->SetCarGlassDamageState(damageInfo.Get(DamageZone::DZ_REAR  ) != 0, REPLACETEX_WINDOW_REAR, bStringHash("WINDOW_FRONT"), 0xa155545);
+    this->SetCarGlassDamageState(damageInfo.Get(DamageZone::DZ_LFRONT) != 0, REPLACETEX_WINDOW_LEFT_FRONT, bStringHash("WINDOW_FRONT"), 0xa155545);
+    this->SetCarGlassDamageState(damageInfo.Get(DamageZone::DZ_LREAR ) != 0, REPLACETEX_WINDOW_LEFT_REAR, bStringHash("WINDOW_FRONT"), 0xa155545);
+    this->SetCarGlassDamageState(damageInfo.Get(DamageZone::DZ_RFRONT) != 0, REPLACETEX_WINDOW_RIGHT_FRONT, bStringHash("WINDOW_FRONT"), 0xa155545);
+    this->SetCarGlassDamageState(damageInfo.Get(DamageZone::DZ_RREAR ) != 0, REPLACETEX_WINDOW_RIGHT_REAR, bStringHash("WINDOW_FRONT"), 0xa155545);
+    this->SetCarGlassDamageState(damageInfo.Get(DamageZone::DZ_REAR  ) != 0, REPLACETEX_WINDOW_REAR_DEFOST, bStringHash("REAR_DEFROSTER"), 0xa155545);
 }
