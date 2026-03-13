@@ -83,7 +83,7 @@ bool CBasicCharacterAnimEntity::Init(void *init_data, SpaceNode *parent_space_no
 
     mTypeID = info->mTypeID;
     mThisInstanceNameHash = info->mThisInstanceNameHash;
-    asm("cmpw 7, %0, %1" : : "r"(mThisInstanceNameHash), "r"(info->mParentInstanceNameHash) : "cr7");
+
     if (info->mParentInstanceNameHash == 0) {
         mSpaceNode = CreateSpaceNode(nullptr);
     } else {
