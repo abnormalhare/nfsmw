@@ -272,9 +272,9 @@ int SNDpitchmult(int shandle, int pitchmult);
 
 int SNDplaysetdef(SNDPLAYOPTS *pspo);
 
-int SNDfxlevel(int shandle, int bus, int level);
+int SNDPROFILE_outputlatency();
 
-int SNDplaysetdef(SNDPLAYOPTS *pspo);
+int SNDfxlevel(int shandle, int bus, int level);
 
 int SNDPKTPLAY_overhead(int maxpackets);
 int SNDPKTPLAY_create(void (*preleasefunc)(void *, void *), void (*pframesfunc)(int, int, void *), void *pclientdata, void *pmem, int memsize);

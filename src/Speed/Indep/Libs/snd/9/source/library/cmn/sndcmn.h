@@ -612,6 +612,7 @@ int SNDPLATFORM_packetoverhead();
 int SNDPLATFORM_packetplaycreate(int pktchan, void *pmem);
 int SNDPLATFORM_packetplay(int pktchan, int voice, int timemult, int lowpasscutoff, int highpasscutoff, SNDSAMPLEFORMAT *pssf, SNDSAMPLEATTR *pssa);
 int SNDPLATFORM_packetplaydestroy(int pktchan);
+int SNDPLATFORM_outputlatency();
 void SNDPLATFORM_getvoicerange(int playloc, int *minvoicerange, int *maxvoicerange);
 
 // ssine.c
