@@ -573,6 +573,10 @@ void *SNDPKTPLAYI_get(int packetinstancehandle, int chan, int *pframes, int *pco
 void SNDPKTPLAYI_freeframes(int packetinstancehandle, int chan, int frames);
 void SNDPKTPLAYI_flushcallbackdata();
 
+// srandom.c
+void SNDI_randomseed(unsigned int seed);
+unsigned int iSNDrandom();
+
 // spat2hdr.c
 void SNDI_patchtohdr(void *pbank, TAGGEDPATCH *ptp, SNDSAMPLEFORMAT *pssf, SNDSAMPLEATTR *pssa, SNDSAMPLEDESC *pssd, unsigned char *isgeneric);
 
@@ -712,6 +716,9 @@ int SNDpitchmult(int shandle, int pitchmult);
 
 // splysdef.c
 int SNDplaysetdef(SNDPLAYOPTS *pspo);
+
+// spoutlat.c
+int SNDPROFILE_outputlatency();
 
 // filesys_c
 int FILESYS_opstatus(int ophandle);

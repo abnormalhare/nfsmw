@@ -883,7 +883,7 @@ Speed/Indep/Libs/snd/9/source/library/cmn/spoutlat.c:
 
 Speed/Indep/Libs/snd/9/source/library/cmn/srandom.c:
 	.text       start:0x80361510 end:0x8036164C
-	.data       start:0x804502DC end:0x804502F8
+	.data       start:0x804502DC end:0x804502F4
 	.bss        start:0x804BEC78 end:0x804BEC90
 
 Speed/Indep/Libs/snd/9/source/library/cmn/srender.c:
@@ -894,7 +894,7 @@ Speed/Indep/Libs/snd/9/source/library/cmn/sresopat.c:
 
 Speed/Indep/Libs/snd/9/source/library/cmn/sserver.c:
 	.text       start:0x8036178C end:0x80361B40
-	.data       start:0x804502F8 end:0x80450300
+	.data       start:0x804502F4 end:0x80450300
 	.bss        start:0x804BEC90 end:0x804BEC9C
 
 Speed/Indep/Libs/snd/9/source/library/cmn/ssine.c:
