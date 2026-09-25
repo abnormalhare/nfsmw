@@ -706,14 +706,17 @@ int SNDmemlimits(int startaddr, int endaddr);
 // smemlu.c
 int SNDmemlargestunused(int *paddr);
 
+// spitch.c
+int SNDpitchmult(int shandle, int pitchmult);
+
+// splysdef.c
+int SNDplaysetdef(SNDPLAYOPTS *pspo);
+
 // filesys_c
 int FILESYS_opstatus(int ophandle);
 
 // sstop.c
 int SNDstop(int shandle);
-
-// spitch.c
-int SNDpitchmult(int shandle, int pitchmult);
 
 // svol.c
 int SNDvol(int shandle, int vol);

@@ -270,6 +270,8 @@ int SNDmemlargestunused(int *paddr);
 
 int SNDpitchmult(int shandle, int pitchmult);
 
+int SNDplaysetdef(SNDPLAYOPTS *pspo);
+
 int SNDfxlevel(int shandle, int bus, int level);
 
 int SNDplaysetdef(SNDPLAYOPTS *pspo);
